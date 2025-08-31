@@ -1,0 +1,21 @@
+problem: >
+  Build ingestion pipelines for BFSI cybersecurity datasets (vulnerabilities, incidents,
+  asset inventories, security logs, CVE/Advisories, threat indicators). Target mapping for
+  fields: event_time, src_ip, dst_ip, threat_type, cve_id, asset_id, severity, vendor, description.
+
+search_keywords:
+  - "cybersecurity dataset csv"
+  - "vulnerability dataset csv"
+  - "CVE dataset csv"
+  - "security incidents csv"
+  - "threat intelligence csv"
+filetypes: ["csv","tsv"]
+max_results_per_query: 8
+table_name_prefix: bfsi_
+allow_domains:
+  - data.gov
+  - kaggle.com
+  - githubusercontent.com
+  - github.com
+  - ndc.nist.gov
+min_rows: 10
