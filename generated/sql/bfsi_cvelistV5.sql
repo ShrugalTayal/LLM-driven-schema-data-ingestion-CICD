@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS bfsi_cvelistv5 (
-  name object NOT NULL,
-  name_1 object NOT NULL,
-  name_2 object NOT NULL,
-  last_commit_message float64,
-  last_commit_date float64
+  name TEXT NOT NULL,
+  name_1 TEXT NOT NULL,
+  name_2 TEXT NOT NULL,
+  last_commit_message DOUBLE PRECISION,
+  last_commit_date DOUBLE PRECISION
 );

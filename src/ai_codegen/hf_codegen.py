@@ -18,9 +18,23 @@ Return ONLY valid JSON with keys "ddl" and "ingest_python".
 def sanitize_name(name: str) -> str:
     """Make sure table/column names are Postgres-safe."""
     safe = re.sub(r'[^a-zA-Z0-9_]', '_', name)
-    if safe[0].isdigit():
+    if safe and safe[0].isdigit():
         safe = f"t_{safe}"
     return safe.lower()
+
+# map pandas/numpy dtype → PostgreSQL type
+PG_TYPE_MAP = {
+    "object": "TEXT",
+    "string": "TEXT",
+    "int64": "BIGINT",
+    "int32": "INTEGER",
+    "float64": "DOUBLE PRECISION",
+    "float32": "REAL",
+    "bool": "BOOLEAN",
+}
+
+def map_dtype(dtype: str) -> str:
+    return PG_TYPE_MAP.get(str(dtype).lower(), "TEXT")
 
 def _extract_json(text: str):
     try:
@@ -45,7 +59,7 @@ def gen_from_schema(schema_json: dict):
         parts = []
         for c in cols:
             col_name = sanitize_name(c["name"])
-            col_type = c.get("data_type", "TEXT")
+            col_type = map_dtype(c.get("data_type", "TEXT"))
             line = f"{col_name} {col_type}"
             if not c.get("is_nullable", True):
                 line += " NOT NULL"
@@ -93,8 +107,8 @@ if __name__ == '__main__':
         if not data or "ddl" not in data or "ingest_python" not in data:
             return fallback()
 
-        # sanitize table + column names inside LLM response
-        data["ddl"] = re.sub(r'[^a-zA-Z0-9_]', '_', data["ddl"])
+        # sanitize names in ddl (optional light clean)
+        data["ddl"] = re.sub(r'[^a-zA-Z0-9_,() ]', '_', data["ddl"])
         if "TARGET_DB_URL" not in data["ingest_python"]:
             data["ingest_python"] = "import os\n" + data["ingest_python"]
 
