@@ -6,10 +6,10 @@ source .venv/bin/activate || true
 python3 -m src.discover --config config/problem.yaml --output urls.txt
 
 # 2. extract
-python -m src.scraper.extract --urls_file urls.txt
+python3 -m src.scraper.extract --urls_file urls.txt
 
 # 3. infer schemas
-python -m src.schema.infer --input_dir data/raw --prefix bfsi
+python3 -m src.schema.infer --input_dir data/raw --prefix bfsi
 
 # 4. upsert schemas into registry
 python - <<'PY'
