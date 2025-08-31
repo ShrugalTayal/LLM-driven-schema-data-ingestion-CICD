@@ -1,0 +1,264 @@
+{
+  "table_name": "bfsi_registry",
+  "columns": [
+    {
+      "name": "identifier",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 1
+    },
+    {
+      "name": "name",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 2
+    },
+    {
+      "name": "homepage",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 3
+    },
+    {
+      "name": "description",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 4
+    },
+    {
+      "name": "pattern",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 5
+    },
+    {
+      "name": "example",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 6
+    },
+    {
+      "name": "email",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 7
+    },
+    {
+      "name": "uri_format",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 8
+    },
+    {
+      "name": "download.owl",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 9
+    },
+    {
+      "name": "download.obo",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 10
+    },
+    {
+      "name": "synonyms",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 11
+    },
+    {
+      "name": "deprecated",
+      "data_type": "bool",
+      "is_nullable": false,
+      "ordinal_position": 12
+    },
+    {
+      "name": "aberowl",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 13
+    },
+    {
+      "name": "agroportal",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 14
+    },
+    {
+      "name": "bartoc",
+      "data_type": "float64",
+      "is_nullable": true,
+      "ordinal_position": 15
+    },
+    {
+      "name": "biocontext",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 16
+    },
+    {
+      "name": "bioportal",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 17
+    },
+    {
+      "name": "cellosaurus",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 18
+    },
+    {
+      "name": "cheminf",
+      "data_type": "float64",
+      "is_nullable": true,
+      "ordinal_position": 19
+    },
+    {
+      "name": "cropoct",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 20
+    },
+    {
+      "name": "ecoportal",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 21
+    },
+    {
+      "name": "edam",
+      "data_type": "float64",
+      "is_nullable": true,
+      "ordinal_position": 22
+    },
+    {
+      "name": "hl7",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 23
+    },
+    {
+      "name": "integbio",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 24
+    },
+    {
+      "name": "lov",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 25
+    },
+    {
+      "name": "miriam",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 26
+    },
+    {
+      "name": "n2t",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 27
+    },
+    {
+      "name": "obofoundry",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 28
+    },
+    {
+      "name": "ols",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 29
+    },
+    {
+      "name": "ontobee",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 30
+    },
+    {
+      "name": "pathguide",
+      "data_type": "float64",
+      "is_nullable": true,
+      "ordinal_position": 31
+    },
+    {
+      "name": "prefixcc",
+      "data_type": "float64",
+      "is_nullable": true,
+      "ordinal_position": 32
+    },
+    {
+      "name": "prefixcommons",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 33
+    },
+    {
+      "name": "re3data",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 34
+    },
+    {
+      "name": "rrid",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 35
+    },
+    {
+      "name": "togoid",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 36
+    },
+    {
+      "name": "uniprot",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 37
+    },
+    {
+      "name": "wikidata",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 38
+    },
+    {
+      "name": "wikidata.entity",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 39
+    },
+    {
+      "name": "zazuko",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 40
+    },
+    {
+      "name": "part_of",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 41
+    },
+    {
+      "name": "provides",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 42
+    },
+    {
+      "name": "has_canonical",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 43
+    }
+  ],
+  "sample_file": "data/raw/registry.tsv"
+}

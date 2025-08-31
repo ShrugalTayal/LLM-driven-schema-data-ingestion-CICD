@@ -1,0 +1,84 @@
+{
+  "table_name": "bfsi_LossFromNetCrime",
+  "columns": [
+    {
+      "name": "Country",
+      "data_type": "object",
+      "is_nullable": true,
+      "ordinal_position": 1
+    },
+    {
+      "name": "2019_Complaints",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 2
+    },
+    {
+      "name": "2019_Losses",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 3
+    },
+    {
+      "name": "2020_Complaints",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 4
+    },
+    {
+      "name": "2020_Losses",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 5
+    },
+    {
+      "name": "2021_Complaints",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 6
+    },
+    {
+      "name": "2021_Losses",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 7
+    },
+    {
+      "name": "2022_Complaints",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 8
+    },
+    {
+      "name": "2022_Losses",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 9
+    },
+    {
+      "name": "2023_Complaints",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 10
+    },
+    {
+      "name": "2023_Losses",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 11
+    },
+    {
+      "name": "2024_Complaints",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 12
+    },
+    {
+      "name": "2024_Losses",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 13
+    }
+  ],
+  "sample_file": "data/raw/LossFromNetCrime.csv"
+}

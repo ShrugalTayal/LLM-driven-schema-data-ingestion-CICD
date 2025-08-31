@@ -1,0 +1,66 @@
+{
+  "table_name": "bfsi_Global_Cybersecurity_Threats_2015-2024",
+  "columns": [
+    {
+      "name": "Country",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 1
+    },
+    {
+      "name": "Year",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 2
+    },
+    {
+      "name": "Attack Type",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 3
+    },
+    {
+      "name": "Target Industry",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 4
+    },
+    {
+      "name": "Financial Loss (in Million $)",
+      "data_type": "float64",
+      "is_nullable": false,
+      "ordinal_position": 5
+    },
+    {
+      "name": "Number of Affected Users",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 6
+    },
+    {
+      "name": "Attack Source",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 7
+    },
+    {
+      "name": "Security Vulnerability Type",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 8
+    },
+    {
+      "name": "Defense Mechanism Used",
+      "data_type": "object",
+      "is_nullable": false,
+      "ordinal_position": 9
+    },
+    {
+      "name": "Incident Resolution Time (in Hours)",
+      "data_type": "int64",
+      "is_nullable": false,
+      "ordinal_position": 10
+    }
+  ],
+  "sample_file": "data/raw/Global_Cybersecurity_Threats_2015-2024.csv"
+}
