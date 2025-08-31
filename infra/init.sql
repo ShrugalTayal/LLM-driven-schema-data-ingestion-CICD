@@ -1,6 +1,12 @@
 CREATE TABLE IF NOT EXISTS sources (
-  id SERIAL PRIMARY KEY, name TEXT NOT NULL, source_type TEXT NOT NULL, base_url TEXT, created_at TIMESTAMP DEFAULT NOW()
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  source_type TEXT NOT NULL,
+  base_url TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(name)  -- ✅ Added for ON CONFLICT support
 );
+
 CREATE TABLE IF NOT EXISTS tables (
   id SERIAL PRIMARY KEY, source_id INT REFERENCES sources(id) ON DELETE CASCADE, table_name TEXT NOT NULL, latest_version INT DEFAULT 1, UNIQUE(source_id, table_name)
 );
