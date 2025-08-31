@@ -1,15 +1,15 @@
-CREATE TABLE IF NOT EXISTS bfsi_LossFromNetCrime (
-  Country object,
-  2019_Complaints int64 NOT NULL,
-  2019_Losses int64 NOT NULL,
-  2020_Complaints int64 NOT NULL,
-  2020_Losses int64 NOT NULL,
-  2021_Complaints int64 NOT NULL,
-  2021_Losses int64 NOT NULL,
-  2022_Complaints int64 NOT NULL,
-  2022_Losses int64 NOT NULL,
-  2023_Complaints int64 NOT NULL,
-  2023_Losses int64 NOT NULL,
-  2024_Complaints int64 NOT NULL,
-  2024_Losses int64 NOT NULL
+CREATE TABLE IF NOT EXISTS bfsi_lossfromnetcrime (
+  country object,
+  t_2019_complaints int64 NOT NULL,
+  t_2019_losses int64 NOT NULL,
+  t_2020_complaints int64 NOT NULL,
+  t_2020_losses int64 NOT NULL,
+  t_2021_complaints int64 NOT NULL,
+  t_2021_losses int64 NOT NULL,
+  t_2022_complaints int64 NOT NULL,
+  t_2022_losses int64 NOT NULL,
+  t_2023_complaints int64 NOT NULL,
+  t_2023_losses int64 NOT NULL,
+  t_2024_complaints int64 NOT NULL,
+  t_2024_losses int64 NOT NULL
 );
