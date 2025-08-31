@@ -6,28 +6,46 @@ RAW = Path("data/raw")
 SCHEMAS = Path("data/schemas")
 SCHEMAS.mkdir(parents=True, exist_ok=True)
 
-def infer_from_csv(path: Path):
-    try:
-        # Handle .tsv delimiter explicitly
-        if path.suffix.lower() == ".tsv":
-            df = pd.read_csv(path, sep="\t", nrows=500)
-        else:
-            df = pd.read_csv(path, nrows=500)
-    except Exception as e:
-        raise RuntimeError(f"Error reading {path.name}: {e}")
-
+def infer_from_dataframe(df: pd.DataFrame, source: str):
     cols = []
     for i, (c, dt) in enumerate(df.dtypes.items(), start=1):
         try:
             cols.append({
                 "name": str(c),
                 "data_type": str(dt),
-                "is_nullable": bool(df[c].isnull().any()),  # Cast to native bool
+                "is_nullable": bool(df[c].isnull().any()),
                 "ordinal_position": i
             })
         except Exception as e:
-            raise RuntimeError(f"Error processing column '{c}' in {path.name}: {e}")
+            raise RuntimeError(f"Error processing column '{c}' in {source}: {e}")
     return cols
+
+def infer_from_csv(path: Path):
+    try:
+        if path.suffix.lower() == ".tsv":
+            df = pd.read_csv(path, sep="\t", nrows=500)
+        else:
+            df = pd.read_csv(path, nrows=500)
+        return infer_from_dataframe(df, path.name)
+    except Exception as e:
+        raise RuntimeError(f"Error reading {path.name}: {e}")
+
+def infer_from_json(path: Path):
+    try:
+        df = pd.read_json(path, lines=True)
+        return infer_from_dataframe(df, path.name)
+    except Exception as e:
+        raise RuntimeError(f"Error reading {path.name}: {e}")
+
+def infer_from_html(path: Path):
+    try:
+        tables = pd.read_html(path)
+        if not tables:
+            raise ValueError("No tables found in HTML")
+        df = tables[0]
+        return infer_from_dataframe(df, path.name)
+    except Exception as e:
+        raise RuntimeError(f"Error reading HTML {path.name}: {e}")
 
 def infer_schema(file_path: str, prefix: str = "tbl"):
     p = Path(file_path)
@@ -35,15 +53,9 @@ def infer_schema(file_path: str, prefix: str = "tbl"):
         if p.suffix.lower() in [".csv", ".tsv"]:
             cols = infer_from_csv(p)
         elif p.suffix.lower() == ".json":
-            df = pd.read_json(p, lines=True)
-            cols = []
-            for i, (c, dt) in enumerate(df.dtypes.items(), start=1):
-                cols.append({
-                    "name": str(c),
-                    "data_type": str(dt),
-                    "is_nullable": bool(df[c].isnull().any()),
-                    "ordinal_position": i
-                })
+            cols = infer_from_json(p)
+        elif p.suffix.lower() == ".html":
+            cols = infer_from_html(p)
         else:
             raise ValueError(f"Unsupported file type: {p.suffix}")
 
