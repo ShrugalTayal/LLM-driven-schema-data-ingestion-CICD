@@ -25,7 +25,7 @@ for f in glob.glob("data/schemas/*_schema.json"):
 PY
 
 # 5. generate pipelines
-python -m src.pipeline.generate
+python3 -m src.pipeline.generate
 
 # 6. apply pipelines
-python -m src.pipeline.apply
+python3 -m src.pipeline.apply
