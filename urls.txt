@@ -1,0 +1,8 @@
+https://www.kaggle.com/datasets/andrewkronser/cve-common-vulnerabilities-and-exposures
+https://www.kaggle.com/datasets/ighoshsubho/security-vulnerabilities-dataset
+https://www.kaggle.com/code/bencaiello/cve-dataset
+https://github.com/CVEProject/cvelistV5
+https://github.com/vulnerability-dataset/software-vulnerability-datasets
+https://www.kaggle.com/datasets/girish17019/cvefixes-vulnerable-and-fixed-code
+https://www.kaggle.com/datasets/jogwums/incidents-accidents-and-violence-in-nigeria/data
+https://github.com/ZeoVan/MSR_20_Code_vulnerability_CSV_Dataset

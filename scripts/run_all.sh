@@ -3,7 +3,7 @@ set -e
 source .venv/bin/activate || true
 
 # 1. discover
-python -m src.discover --config config/problem.yaml --output urls.txt
+python3 -m src.discover --config config/problem.yaml --output urls.txt
 
 # 2. extract
 python -m src.scraper.extract --urls_file urls.txt
