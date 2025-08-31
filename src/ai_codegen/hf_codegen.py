@@ -16,8 +16,8 @@ Return ONLY valid JSON with keys "ddl" and "ingest_python".
 # Helpers
 # ------------------------
 def sanitize_name(name: str) -> str:
-    """Make sure table/column names are Postgres-safe."""
-    safe = re.sub(r'[^a-zA-Z0-9_]', '_', name)
+    """Make sure table/column names are Postgres-safe (snake_case)."""
+    safe = re.sub(r'[^a-zA-Z0-9]', '_', name)
     if safe and safe[0].isdigit():
         safe = f"t_{safe}"
     return safe.lower()
@@ -48,11 +48,33 @@ def _extract_json(text: str):
                 return None
         return None
 
+def sanitize_ddl_names(ddl: str) -> str:
+    """Sanitize table/column names in a CREATE TABLE statement."""
+    # Match CREATE TABLE <table_name>
+    ddl = re.sub(
+        r'CREATE TABLE IF NOT EXISTS\s+([a-zA-Z0-9_]+)',
+        lambda m: f'CREATE TABLE IF NOT EXISTS {sanitize_name(m.group(1))}',
+        ddl,
+        flags=re.IGNORECASE
+    )
+    # Match column names before type definition
+    def repl_col(m):
+        col_name = sanitize_name(m.group(1))
+        col_type = m.group(2)
+        rest = m.group(3) or ""
+        return f"{col_name} {col_type}{rest}"
+    ddl = re.sub(
+        r'([a-zA-Z0-9_ ]+)\s+([A-Z ]+)(\s+NOT NULL)?[,)]',
+        lambda m: repl_col(m) + (',' if m.group(0).endswith(',') else ')'),
+        ddl
+    )
+    return ddl
+
 # ------------------------
 # Main codegen function
 # ------------------------
 def gen_from_schema(schema_json: dict):
-    # fallback
+    # fallback generator
     def fallback():
         table_name = sanitize_name(schema_json["table_name"])
         cols = schema_json.get("columns", [])
@@ -86,7 +108,7 @@ if __name__ == '__main__':
 """
         return {"ddl": ddl, "ingest_python": py}
 
-    # If no client available, fallback
+    # Use fallback if no HF client
     if not _client:
         return fallback()
 
@@ -94,7 +116,7 @@ if __name__ == '__main__':
     try:
         resp = _client.text_generation(prompt, max_new_tokens=512, temperature=0.0)
 
-        # Extract text
+        # Extract generated text
         text = ""
         if isinstance(resp, (list, tuple)) and resp:
             text = resp[0].get("generated_text", str(resp[0]))
@@ -107,8 +129,8 @@ if __name__ == '__main__':
         if not data or "ddl" not in data or "ingest_python" not in data:
             return fallback()
 
-        # sanitize names in ddl (optional light clean)
-        data["ddl"] = re.sub(r'[^a-zA-Z0-9_,() ]', '_', data["ddl"])
+        # Sanitize table/column names only
+        data["ddl"] = sanitize_ddl_names(data["ddl"])
         if "TARGET_DB_URL" not in data["ingest_python"]:
             data["ingest_python"] = "import os\n" + data["ingest_python"]
 
